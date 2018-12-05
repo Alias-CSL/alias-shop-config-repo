@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: alias-shop-eureka-server
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      label: master
+      profile: dev
+eureka:
+  instance:
+    hostname: localhost
+    # hostname: alias-shop-eureka-server
+  client:
+    registerWithEureka: false #不将自身作为客户端注册
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

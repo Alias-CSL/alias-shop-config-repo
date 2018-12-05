@@ -1,0 +1,78 @@
+spring:
+  application:
+    name: alias-shop-module-enterprise
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      label: master
+      profile: dev
+#  datasource: #druid数据源配置
+#    druid:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc://mysql://120.77.205.9:3306/alias_shop?useUnicode=true&characterEncoding=UTF8
+#      username: alias
+#      password: chen8999958...
+#      #连接池参数，初始数、最大数、最小数、获取连接等待超时时间（毫秒）
+#      initial-size: 5
+#      max-active: 20
+#      min-idle: 5
+#      max-wait: 60000
+  datasource:
+    name: test
+    url: jdbc:mysql://120.77.205.9:3306/alias_shop?characterEncoding=UTF8
+    username: alias
+    password: chen8999958...
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+#    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+#  redis:
+#    url: 120.77.205.9
+#    port: 6379
+#    timeout: 1800
+#    pool:
+#      max-active: 8
+#        min-idle: 0
+#        max-idle: 0
+#        max-wait: -1
+#    password: chen8999958...
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  basepackage: cn.alias.shop.module.enterprise.serviceDal.mapper
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+eureka:
+  instance:
+    non-secure-port: ${server.port:8787}
+    metadata-map:
+      instanceId: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:${eureka.port:8761}/eureka/
+management:
+  endpoint:
+    info:
+      enabled: true
+    beans:
+      enabled: true
+logging:
+  level:
+     cn.alias.shop.module.enterprise.serviceDal.mapper : debug
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 20000
+        readTimeout: 20000
+        loggerLevel: basic
