@@ -53,7 +53,7 @@ pagehelper:
 
 eureka:
   instance:
-    non-secure-port: ${server.port:8888}
+    non-secure-port: ${server.port:8389}
     metadata-map:
       instanceId: ${spring.application.name}:${random.value}
   client:
