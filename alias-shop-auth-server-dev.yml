@@ -73,5 +73,5 @@ feign:
         readTimeout: 20000
         loggerLevel: basic
 # To disable Hystrix in Feign
-  hystrix:
-    enabled: true
+#  hystrix:
+#    enabled: true
